@@ -39,7 +39,6 @@ jobs:
           bash ./scripts/git_update.sh -v patch
 
       - name: Build JAR with Gradle
-        working-directory: app-curry
         run: |
           chmod +x ./gradlew
           ./gradlew clean bootJar -x test
