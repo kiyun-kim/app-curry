@@ -1,0 +1,35 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
+<th:block layout:fragment="title">
+    <title>출입국심사</title>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div id="mainTitle">
+        출입국심사
+    </div>
+
+    <div>
+        <div type="button" id="moveDeparture" onclick="moveDp();">출국심사</div>
+    </div>
+    <div>
+        <div type="button" id="moveArrival" onclick="moveAv();"> 입국심사</div>
+    </div>
+</th:block>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        // 출입국심사 정보 작성 페이지로 이동
+        function moveAv(){
+            location.href = '/immigration/write.do';
+        }
+        function moveDp(){
+            location.href = '/immigration/writeD.do';
+        }
+    </script>
+</th:block>
+</html>

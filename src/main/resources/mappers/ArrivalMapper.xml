@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.curry.domain.post.ArrivalMapper">
+
+    <!-- tb_arrival 테이블 전체 컬럼 -->
+    <sql id="arrivalColumns">
+        passport_no
+        , surname
+        , given_name
+        , date_of_birth
+        , gender
+        , nationality
+        , date_of_issue
+        , date_of_expiry
+        , date_of_arrival
+    </sql>
+
+
+    <!-- 입국 정보 저장 -->
+    <insert id="save" parameterType="com.curry.domain.post.ArrivalRequest">
+        INSERT INTO tb_arrival (
+        <include refid="arrivalColumns" />
+        ) VALUES (
+        #{passport_no}
+        , #{surname}
+        , #{given_name}
+        , #{date_of_birth,jdbcType=DATE}
+        , #{gender}
+        , #{nationality}
+        , #{date_of_issue,jdbcType=DATE}
+        , #{date_of_expiry,jdbcType=DATE}
+        , NOW()
+        )
+    </insert>
+
+</mapper>

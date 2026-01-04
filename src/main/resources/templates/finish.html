@@ -1,0 +1,38 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
+    <th:block layout:fragment="title">
+        <title>출입국심사</title>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/finishPage.css}">
+    </th:block>
+
+    <th:block layout:fragment="content">
+        <div>
+            <div class="msg">
+                심사가 완료되었습니다
+            </div>
+            <div class="btnBox">
+                <div type="button" id="moveMain" onclick="moveMain();">처음으로</div>
+            </div>
+        </div>
+    </th:block>
+
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            // 뒤로가기 버튼 동작 안함
+            (function (){
+                history.pushState(null,null,location.href);
+
+                window.onpopstate = function () {
+                    history.go(1);
+                };
+            })();
+
+            // 메인 페이지로 이동
+            function moveMain(){
+                location.href = '/';
+            }
+        </script>
+    </th:block>
+</html>

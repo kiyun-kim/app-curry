@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
+    <th:block layout:fragment="title">
+        <title>출입국심사</title>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/writePage.css}">
+    </th:block>
+
+    <th:block layout:fragment="content">
+        <div id="writeTitle">입국 심사</div>
+
+        <form id="saveForm" method="post" autocomplete="off">
+            <div class="nameTag">
+                여권번호 | Passport no<br>
+                <input class="textBox" type="text" id="passportNo" name="passport_no"/>
+            </div>
+            <div class="nameTag">
+                성 | Surname<br>
+                <input class="textBox" type="text" id="surname" name="surname"/>
+            </div>
+            <div class="nameTag">
+                이름 | Given name<br>
+                <input class="textBox" type="text" id="givenName" name="given_name"/>
+            </div>
+            <div class="nameTag">
+                생년월일 | Date of Birth<br>
+                <input class="dateBox" type="date" id="birth" name="date_of_birth"/>
+            </div>
+            <div class="nameTag">성별 | Gender</div>
+            <span class="radioBox">
+                    남성(Male)
+                    <input type="radio" id="gender1" name="gender" value="Male"/>
+                    <span style="margin-left: 40px;">
+                        여성(Female)
+                        <input type="radio" id="gender2" name="gender" value="Female"/>
+                    </span>
+                </span>
+            <br/><br/>
+            <div class="nameTag">
+                국적 | Nationality<br>
+                <input class="textBox" type="text" id="nationality" name="nationality"/>
+            </div>
+            <div class="nameTag">
+                발급일자 | Date of Issue<br>
+                <input class="dateBox" type="date" id="issue" name="date_of_issue"/>
+            </div>
+            <div class="nameTag">
+                만료일자 | Date of Expiry<br>
+                <input class="dateBox" type="date" id="expiry" name="date_of_expiry"/>
+            </div>
+        </form>
+
+        <div class="btnBox">
+            <button type="button" id="saveBtn" onclick="saveArrival();"> 완료 </button>
+        </div>
+    </th:block>
+
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+
+            //을를 판단
+            function hasCoda(value) {
+                return ((value.charCodeAt(value.length - 1) - 0xAC00) % 28) > 0;
+            }
+
+            // 작성하지 않은 칸 있는지 확인
+            function isValid(target, fieldName, focusTarget) {
+                if (target.value.trim()) {
+                    return true;
+                }
+
+                const particle = (hasCoda(fieldName)) ? '을' : '를'; // 조사
+                const elementType = (target.type === 'text' || target.type === 'password' || target.type === 'search' || target.type === 'textarea') ? '입력' : '선택';
+                alert( `${fieldName + particle} ${elementType}해 주세요.` );
+
+                target.value = '';
+                ( !focusTarget ? target : focusTarget).focus();
+                throw new Error(`"${target.id}" is required...`)
+            }
+
+            // 생년월일, 발급일자, 만료일자 비교
+            function isValidDate(birthInput, issueInput, expiryInput) {
+                const birthDate = new Date(birthInput.value);
+                const issueDate = new Date(issueInput.value);
+                const expiryDate = new Date(expiryInput.value);
+
+                if (issueDate > expiryDate) {
+                    alert('발급일자는 만료일자보다 이후일 수 없습니다.');
+                    expiryInput.focus();
+                    return false;
+                } else if (birthDate > issueDate) {
+                    alert('생년월일은 발급일자보다 이후일 수 없습니다.');
+                    issueInput.focus();
+                    return false;
+                }
+
+                return true;
+            }
+
+
+            // 입력 정보 저장
+            function saveArrival(){
+                const form = document.getElementById('saveForm');
+                const fields = [form.passport_no, form.surname, form.given_name, form.date_of_birth, form.gender,
+                                form.nationality, form.date_of_issue, form.date_of_expiry]
+                const fieldNames = ['여권번호', '성', '이름', '생년월일', '성별', '국적', '발급일자', '만료일자'];
+
+                for (let i =0, len = fields.length; i< len; i++){
+                    isValid(fields[i], fieldNames[i]);
+                }
+
+                if (!isValidDate(form.date_of_birth, form.date_of_issue, form.date_of_expiry)) {
+                    return; // submit 중단
+                }
+
+                document.getElementById('saveBtn').disabled = true;
+                form.action = '/immigration/finish.do'
+                form.submit();
+            }
+        </script>
+    </th:block>
+</html>

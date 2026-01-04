@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.curry.domain.departure.DepartureMapper">
+
+    <!-- tb_departure 테이블 전체 컬럼 -->
+    <sql id="departureColumns">
+        passport_no
+        , surname
+        , given_name
+        , date_of_birth
+        , gender
+        , nationality
+        , date_of_issue
+        , date_of_expiry
+        , date_of_departure
+    </sql>
+
+
+    <!-- 출국 정보 저장 -->
+    <insert id="save" parameterType="com.curry.domain.departure.DepartureRequest">
+        INSERT INTO tb_departure (
+        <include refid="departureColumns" />
+        ) VALUES (
+        #{passport_no}
+        , #{surname}
+        , #{given_name}
+        , #{date_of_birth,jdbcType=DATE}
+        , #{gender}
+        , #{nationality}
+        , #{date_of_issue,jdbcType=DATE}
+        , #{date_of_expiry,jdbcType=DATE}
+        , NOW()
+        )
+    </insert>
+
+</mapper>

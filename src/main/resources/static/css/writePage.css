@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'SCDream2';
+    src: url('../fonts/SCDream2.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SCDream3';
+    src: url('../fonts/SCDream3.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SCDream4';
+    src: url('../fonts/SCDream4.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SCDream5';
+    src: url('../fonts/SCDream5.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#writeTitle {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    font-family: 'SCDream5', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.1em;
+}
+
+#saveForm {
+    position: absolute;
+    top:20%;
+    left:50%;
+    width: 460px;
+    transform: translate(-50%, 0%);
+
+    padding-left: 10px;
+}
+
+#saveBtn {
+    width: 150px;
+    height: 45px;
+
+    font-family: 'SCDream4', sans-serif;
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+
+    background: #104C82;
+    border-radius: 10px;
+}
+
+.btnBox {
+    position: absolute;
+    height: 120px;
+    top: 880px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameTag {
+    font-family: 'SCDream2', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.textBox {
+    width: 450px;
+    height: 28px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    background: #FFFFFF;
+    border: 2px solid #104C82;
+    border-radius: 12px;
+}
+
+.dateBox {
+    width: 150px;
+    height: 28px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+
+    font-family: 'SCDream2', sans-serif;
+    font-size: 12px;
+
+    background: #FFFFFF;
+    border: 2px solid #104C82;
+    border-radius: 12px;
+}
+
+.radioBox {
+    width: 300px;
+
+    font-family: 'SCDream2', sans-serif;
+    font-size: 15px;
+}

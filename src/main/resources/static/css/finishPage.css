@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'SCDream4';
+    src: url('../fonts/SCDream4.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SCDream5';
+    src: url('../fonts/SCDream5.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.msg {
+    width: 100%;
+    height: 40%;
+    margin-top:15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'SCDream5', sans-serif;
+    font-size: 48px;
+    color: #FFFFFF;
+    letter-spacing: 0.1em;
+
+    background: #104C82;
+}
+
+.btnBox {
+    position: absolute;
+    height: 120px;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+#moveMain {
+    width: 150px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'SCDream5', sans-serif;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0.1em;
+
+    background: #FFFFFF;
+    border: 2px solid #000000;
+}
